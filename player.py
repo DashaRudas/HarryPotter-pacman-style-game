@@ -1,9 +1,17 @@
 import turtle
 import math
+from startwalls import StartWalls
 
-global player
-global avadakedavra
-global walls
+images = [".\\paint\\volan_left_111.gif", ".\\paint\\volan_down_111.gif", ".\\paint\\volan_up_111.gif",
+          ".\\paint\\snitch_111.gif",
+          ".\\paint\\avadakedavra.gif", ".\\paint\\harry_fire_111.gif", ".\\paint\\volan_right_111.gif",
+          ".\\paint\\harry_hat_111.gif",
+          ".\\paint\\harry_right111.gif", ".\\paint\\harry_left111.gif", ".\\paint\\landscape (1).gif",
+          ".\\paint\\happy_up111.gif", ".\\paint\\happy_down111.gif"]
+
+for image in images:
+    turtle.register_shape(image)
+
 
 class Player(turtle.Turtle):
     def __init__(self):
@@ -38,10 +46,6 @@ class Player(turtle.Turtle):
             self.up = 0
             self.right = 1
 
-        self.shape(".\\paint\\harry_right111.gif")
-        avadakedavra.shape(".\\paint\\avadakedavra.gif")
-        avadakedavra.fire()
-
     def headdown(self):
 
         if self.down == 1:
@@ -61,10 +65,6 @@ class Player(turtle.Turtle):
             self.rt(90)
             self.right = 0
             self.down = 1
-
-        self.shape(".\\paint\\happy_up111.gif")
-        avadakedavra.shape(".\\paint\\avadakedavra.gif")
-        avadakedavra.fire()
 
     def headleft(self):
 
@@ -86,10 +86,6 @@ class Player(turtle.Turtle):
             self.down = 0
             self.left = 1
 
-        self.shape(".\\paint\\harry_left111.gif")
-        avadakedavra.shape(".\\paint\\avadakedavra.gif")
-        avadakedavra.fire()
-
     def headup(self):
 
         if self.up == 1:
@@ -110,10 +106,6 @@ class Player(turtle.Turtle):
             self.left = 0
             self.up = 1
 
-        self.shape(".\\paint\\happy_up111.gif")
-        avadakedavra.shape(".\\paint\\avadakedavra.gif")
-        avadakedavra.fire()
-
     def go_up(self):
 
         move_to_x = self.xcor()
@@ -126,7 +118,7 @@ class Player(turtle.Turtle):
             self.shape(".\\paint\\happy_down111.gif")
             self.frame = 0
 
-        if (move_to_x, move_to_y) not in walls:
+        if (move_to_x, move_to_y) not in StartWalls.walls:
             self.goto(move_to_x, move_to_y)
 
     def go_down(self):
@@ -140,7 +132,7 @@ class Player(turtle.Turtle):
             self.shape(".\\paint\\happy_up111.gif")
             self.frame = 0
 
-        if (move_to_x, move_to_y) not in walls:
+        if (move_to_x, move_to_y) not in StartWalls.walls:
             self.goto(move_to_x, move_to_y)
 
     def go_left(self):
@@ -153,12 +145,12 @@ class Player(turtle.Turtle):
             self.shape(".\\paint\\harry_left111.gif")
             self.frame = 0
 
-        if (move_to_x, move_to_y) not in walls:
+        if (move_to_x, move_to_y) not in StartWalls.walls:
             self.goto(move_to_x, move_to_y)
 
     def go_right(self):
-        move_to_x = player.xcor() + 24
-        move_to_y = player.ycor()
+        move_to_x = self.xcor() + 24
+        move_to_y = self.ycor()
         if self.frame == 0:
             self.shape(".\\paint\\harry_right111.gif")
             self.frame = 1
@@ -166,7 +158,7 @@ class Player(turtle.Turtle):
             self.shape(".\\paint\\harry_right111.gif")
             self.frame = 0
 
-        if (move_to_x, move_to_y) not in walls:
+        if (move_to_x, move_to_y) not in StartWalls.walls:
             self.goto(move_to_x, move_to_y)
 
     def is_collision(self, other):

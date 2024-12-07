@@ -1,9 +1,7 @@
 import turtle
 
-global lives
-global game
 
-class Info():
+class Info:
     def __init__(self):
         self.gold = 0
         self.lives = 3
@@ -27,15 +25,14 @@ class Info():
         self.pen.pendown()
 
     def show_gold(self):
-        global game
         self.pen.undo()
-        msg = "Деньги: %s" % (game.gold)
+        msg = "Деньги: %s" % self.gold
         self.pen.penup()
         self.pen.goto(-324, 334)
         self.pen.write(msg, font=("Arial", 16, "normal"))
 
     def show_rules(self):
-        msg = ("W,A,S,D - заклятия, стрелочки - передвижение")
+        msg = "W,A,S,D - заклятия, стрелочки - передвижение"
         self.pen.penup()
         self.pen.goto(-324, -380)
         self.pen.write(msg, font=("Arial", 16, "normal"))
@@ -65,7 +62,7 @@ class Info():
 
     def show_lives(self):
         self.pen.undo()
-        msg = "Жизни:%s" % (life.lives)
+        msg = "Жизни:%s" % self.lives
         self.pen.penup()
         self.pen.ht()
         self.pen.goto(250, -380)

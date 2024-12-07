@@ -1,0 +1,2 @@
+class StartWalls:
+    walls = []

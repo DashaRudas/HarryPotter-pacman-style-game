@@ -1,12 +1,12 @@
 import turtle
 import math
 import random
+from startwalls import StartWalls
+from start import StartPlayer
 
 
 class Enemy(turtle.Turtle):
-    global player
-    global lives
-    global walls
+
     def __init__(self, x, y):
         turtle.Turtle.__init__(self)
         self.shape(".\\paint\\volan_left_111.gif")
@@ -53,23 +53,23 @@ class Enemy(turtle.Turtle):
             dx = 0
             dy = 0
 
-        if self.is_close(player):
-            if player.xcor() < self.xcor():
+        if self.is_close(StartPlayer.player):
+            if StartPlayer.player.xcor() < self.xcor():
                 self.direction = "left"
 
-            elif player.xcor() > self.xcor():
+            elif StartPlayer.player.xcor() > self.xcor():
                 self.direction = "right"
 
-            elif player.ycor() < self.ycor():
+            elif StartPlayer.player.ycor() < self.ycor():
                 self.direction = "down"
 
-            elif player.ycor() > self.ycor():
+            elif StartPlayer.player.ycor() > self.ycor():
                 self.direction = "up"
 
         move_to_x = self.xcor() + dx
         move_to_y = self.ycor() + dy
 
-        if (move_to_x, move_to_y) not in walls:
+        if (move_to_x, move_to_y) not in StartWalls.walls:
             self.goto(move_to_x, move_to_y)
         else:
             self.direction = random.choice(["up", "down", "left", "right"])
